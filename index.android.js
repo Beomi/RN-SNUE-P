@@ -9,25 +9,80 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
-} from 'react-native';
+  View,
+  ScrollView,
+  ListView,
+  TouchableOpacity,
+} from 'react-native'
 
 class Project extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
-    );
+  constructor(props) {
+    super(props);
+    var ds = new ListView.DataSource({
+      rowHasChanged: (r1,r2) => r1 !== r2
+    })
+    this.state = {
+      pagination: '',
+      dataSource: ds.cloneWithRows([])
+    };
   }
+  
+  
+  _renderRow(rowData){
+    return (
+      <View>
+        <Text style={styles.maintext}>{rowData.title}</Text>
+        <Text style={styles.smalltext}>{rowData.user}</Text>
+        <Text style={styles.smalltext}>{rowData.datetime}</Text>
+      </View>)
+  }
+  
+  componentWillMount(){
+    fetch('http://localhost:8000/community/freeboard/1/')
+      .then((response) => response.json())
+      .then((responseJSON) => {
+      var textList=[];
+      for (var p in responseJSON.freeboard_list){
+        textList.push({
+          title: responseJSON.freeboard_list[p].title,
+          user: responseJSON.freeboard_list[p].user,
+          post_number: responseJSON.freeboard_list[p].post_number,
+          datetime: responseJSON.freeboard_list[p].datetime
+        })
+      }
+      var ds = new ListView.DataSource({
+      rowHasChanged: (r1,r2) => r1 !== r2
+      })
+      this.setState({
+        dataSource: ds.cloneWithRows(textList)
+      })
+    })
+      .catch((error) => {
+        console.error(error);
+      })
+  }
+  
+  render() {
+    if (this.freeboard_list !== []){
+      return (
+        <View style={styles.container}>
+          <Text>스누피 자유게시판 최신글</Text>
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={this._renderRow}
+          style={styles.row}
+        />
+        </View>
+      )
+      
+    }
+    else{
+      return <Text style={styles.welcome}>서버 접속이 올바르지 않습니다.</Text>
+    }
+  }
+  
+  
+  
 }
 
 const styles = StyleSheet.create({
@@ -36,6 +91,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+    paddingTop: 25,
   },
   welcome: {
     fontSize: 20,
@@ -47,6 +103,16 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  row: {
+    padding: 20,
+  },
+  maintext: {
+    fontSize: 20,
+  },
+  smalltext: {
+    fontSize: 15,
+    textAlign: 'right',
+  }
 });
 
 AppRegistry.registerComponent('Project', () => Project);

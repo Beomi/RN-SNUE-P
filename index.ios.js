@@ -29,7 +29,12 @@ class Project extends Component {
   
   
   _renderRow(rowData){
-    return <Text style={styles.row}>{rowData.title}</Text>
+    return (
+      <View>
+        <Text style={styles.maintext}>{rowData.title}</Text>
+        <Text style={styles.smalltext}>{rowData.user}</Text>
+        <Text style={styles.smalltext}>{rowData.datetime}</Text>
+      </View>)
   }
   
   componentWillMount(){
@@ -41,7 +46,8 @@ class Project extends Component {
         textList.push({
           title: responseJSON.freeboard_list[p].title,
           user: responseJSON.freeboard_list[p].user,
-          post_number: responseJSON.freeboard_list[p].post_number
+          post_number: responseJSON.freeboard_list[p].post_number,
+          datetime: responseJSON.freeboard_list[p].datetime
         })
       }
       var ds = new ListView.DataSource({
@@ -97,9 +103,15 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   row: {
-    height: 40,
     padding: 20,
   },
+  maintext: {
+    fontSize: 20,
+  },
+  smalltext: {
+    fontSize: 15,
+    textAlign: 'right',
+  }
 });
 
 AppRegistry.registerComponent('Project', () => Project);
