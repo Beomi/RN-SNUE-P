@@ -63,6 +63,7 @@ class Project extends Component {
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this._renderRow}
+          style={styles.row}
         />
         </View>
       )
@@ -83,7 +84,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
-    paddingTop: 60,
+    paddingTop: 25,
   },
   welcome: {
     fontSize: 20,
@@ -96,8 +97,8 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   row: {
-    textAlign: 'center',
-    height: 20
+    height: 40,
+    padding: 20,
   },
 });
 
