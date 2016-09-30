@@ -13,7 +13,10 @@ import {
   ScrollView,
   ListView,
   TouchableOpacity,
+  TouchableHighlight,
 } from 'react-native'
+import NavigationBar from 'react-native-navbar';
+
 
 class Project extends Component {
   constructor(props) {
@@ -31,9 +34,10 @@ class Project extends Component {
   _renderRow(rowData){
     return (
       <View>
-        <Text style={styles.maintext}>{rowData.title}</Text>
-        <Text style={styles.smalltext}>{rowData.user}</Text>
-        <Text style={styles.smalltext}>{rowData.datetime}</Text>
+          <Text style={styles.maintext}>{rowData.title}</Text>
+          <Text style={styles.smalltext}>{rowData.user}</Text>
+          <Text style={styles.smalltext}>{rowData.datetime}</Text>
+        
       </View>)
   }
   
@@ -65,12 +69,24 @@ class Project extends Component {
   render() {
     if (this.freeboard_list !== []){
       return (
-        <View style={styles.container}>
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={this._renderRow}
-          style={styles.row}
-        />
+        <View style={{ flex:1, }}>
+          <View>
+            <NavigationBar
+              title={{ title: '자유게시판 최신글', tintColor: 'black', }}
+              leftButton={{ title: 'HOME', }}
+              rightButton={{ title: 'LOGIN', }}
+              style={ styles.navbar }
+              statusBar={{ tintColor: "white", }}
+            />
+          </View>
+          <View style={styles.container}>
+              <ListView
+              dataSource={this.state.dataSource}
+              renderRow={this._renderRow}
+              style={styles.row}
+            />
+            
+          </View>
         </View>
       )
       
@@ -90,28 +106,29 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
-    paddingTop: 25,
   },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
-    margin: 10,
   },
   instructions: {
     textAlign: 'center',
     color: '#333333',
-    marginBottom: 5,
   },
   row: {
     padding: 20,
   },
   maintext: {
-    fontSize: 20,
+    fontSize: 18,
   },
   smalltext: {
-    fontSize: 15,
+    fontSize: 14,
     textAlign: 'right',
-  }
+    color: '#AAA',
+  },
+  navbar: {
+    backgroundColor: '#DADADA',
+  },
 });
 
 AppRegistry.registerComponent('Project', () => Project);
