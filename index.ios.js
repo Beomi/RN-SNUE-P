@@ -16,6 +16,7 @@ import {
   TouchableHighlight,
 } from 'react-native'
 import NavigationBar from 'react-native-navbar';
+import Header from './src/components/Header';
 
 
 class Project extends Component {
@@ -69,16 +70,9 @@ class Project extends Component {
   render() {
     if (this.freeboard_list !== []){
       return (
+        <View>
+          <Header headerText={'자유게시판'} />
         <View style={{ flex:1, }}>
-          <View>
-            <NavigationBar
-              title={{ title: '자유게시판 최신글', tintColor: 'black', }}
-              leftButton={{ title: 'HOME', }}
-              rightButton={{ title: 'LOGIN', }}
-              style={ styles.navbar }
-              statusBar={{ tintColor: "white", }}
-            />
-          </View>
           <View style={styles.container}>
               <ListView
               dataSource={this.state.dataSource}
@@ -88,6 +82,7 @@ class Project extends Component {
             
           </View>
         </View>
+      </View>
       )
       
     }
