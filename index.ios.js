@@ -34,10 +34,12 @@ class Project extends Component {
   
   _renderRow(rowData){
     return (
-      <View>
+      <View style={styles.renderRow}>
           <Text style={styles.maintext}>{rowData.title}</Text>
-          <Text style={styles.smalltext}>{rowData.user}</Text>
-          <Text style={styles.smalltext}>{rowData.datetime}</Text>
+        <View>
+            <Text style={styles.smalltextWithUser}>{rowData.user}</Text>
+            <Text style={styles.smalltextWithDate}>{rowData.datetime}</Text>
+        </View>
         
       </View>)
   }
@@ -70,9 +72,8 @@ class Project extends Component {
   render() {
     if (this.freeboard_list !== []){
       return (
-        <View>
-          <Header headerText={'자유게시판'} />
         <View style={{ flex:1, }}>
+          <Header headerText={'자유게시판'} />
           <View style={styles.container}>
               <ListView
               dataSource={this.state.dataSource}
@@ -80,7 +81,6 @@ class Project extends Component {
               style={styles.row}
             />
             
-          </View>
         </View>
       </View>
       )
@@ -111,15 +111,24 @@ const styles = StyleSheet.create({
     color: '#333333',
   },
   row: {
-    padding: 20,
+  },
+  renderRow: {
+    padding: 10,
+    borderWidth: 0.5,
+    borderColor: '#AAA',
   },
   maintext: {
     fontSize: 18,
   },
-  smalltext: {
+  smalltextWithUser: {
+    fontSize: 14,
+    textAlign: 'left',
+    color: '#AAA',
+  },
+  smalltextWithDate: {
     fontSize: 14,
     textAlign: 'right',
-    color: '#AAA',
+    color: '#AAA'
   },
   navbar: {
     backgroundColor: '#DADADA',
