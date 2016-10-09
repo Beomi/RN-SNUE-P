@@ -38,3 +38,8 @@ buck-out/
 \.buckd/
 android/app/libs
 android/keystores/debug.keystore
+
+#buck/flow/watchman
+.buckconfig
+.flowconfig
+.watchmanconfig
