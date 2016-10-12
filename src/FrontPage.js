@@ -84,12 +84,12 @@ class FrontPage extends Component {
       .then((response) => response.json())
       .then((responseJSON) => {
       var textList=[];
-      for (var p in responseJSON.freeboard_list){
+      for (var p in responseJSON.data){
         textList.push({
-          title: responseJSON.freeboard_list[p].title,
-          user: responseJSON.freeboard_list[p].user,
-          post_number: responseJSON.freeboard_list[p].post_number,
-          datetime: responseJSON.freeboard_list[p].datetime
+          title: responseJSON.data[p].title,
+          user: responseJSON.data[p].user,
+          post_number: responseJSON.data[p].post_number,
+          datetime: responseJSON.data[p].datetime
         })
       }
       var ds = new ListView.DataSource({

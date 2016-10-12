@@ -19,18 +19,18 @@ class Project extends Component {
         <TabBarIOS selectedTab={this.state.selectedTab}>
           <TabBarIOS.Item selected={this.state.selectedTab === 'FrontPage'}
             systemIcon="featured"
-            onpress = {()=>{
+            onPress = {() => {
               this.setState({
-                selectedTab: 'FrontPage',
+                selectedTab: 'FrontPage'
               })
             }}>
             <FrontPage />
           </TabBarIOS.Item>
           <TabBarIOS.Item selected={this.state.selectedTab === 'BoardList'}
             systemIcon="contacts"
-            onpress = {()=>{
+            onPress = {() => {
               this.setState({
-                selectedTab: 'BoardList',
+                selectedTab: 'BoardList'
               })
             }}>
             <BoardList />
