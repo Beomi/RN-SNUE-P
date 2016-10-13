@@ -9,19 +9,6 @@ import {
   TouchableHighlight,
 } from 'react-native';
 
-var styles = StyleSheet.create({
-    description: {
-      fontSize: 20,
-      textAlign: 'center',
-      color: '#FFFFFF'
-    },
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#123456',
-    }
-});
 
 class BoardList extends Component {
   constructor(props) {
@@ -114,6 +101,7 @@ const styles = StyleSheet.create({
     color: '#333333',
   },
   row: {
+    flex: 1,
   },
   renderRow: {
     padding: 10,
