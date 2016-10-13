@@ -1,12 +1,5 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   Text,
   View,
@@ -14,12 +7,9 @@ import {
   ListView,
   TouchableOpacity,
   TouchableHighlight,
-} from 'react-native'
-import NavigationBar from 'react-native-navbar';
-import Header from './src/components/Header';
+} from 'react-native';
 
-
-class Project extends Component {
+class ContentList extends Component {
   constructor(props) {
     super(props);
     var ds = new ListView.DataSource({
@@ -45,16 +35,16 @@ class Project extends Component {
   }
   
   componentWillMount(){
-    fetch('http://localhost:8000/community/freeboar/1/')
+    fetch('http://localhost:8000/community/g5_write_freeboard_free/1/')
       .then((response) => response.json())
       .then((responseJSON) => {
       var textList=[];
-      for (var p in responseJSON.freeboard_list){
+      for (var p in responseJSON.data){
         textList.push({
-          title: responseJSON.freeboard_list[p].title,
-          user: responseJSON.freeboard_list[p].user,
-          post_number: responseJSON.freeboard_list[p].post_number,
-          datetime: responseJSON.freeboard_list[p].datetime
+          title: responseJSON.data[p].title,
+          user: responseJSON.data[p].user,
+          post_number: responseJSON.data[p].post_number,
+          datetime: responseJSON.data[p].datetime
         })
       }
       var ds = new ListView.DataSource({
@@ -73,7 +63,6 @@ class Project extends Component {
     if (this.freeboard_list !== []){
       return (
         <View style={{ flex:1, }}>
-          <Header headerText={'자유게시판'} />
           <View style={styles.container}>
               <ListView
               dataSource={this.state.dataSource}
@@ -87,7 +76,10 @@ class Project extends Component {
       
     }
     else{
-      return <Text style={styles.welcome}>서버 접속이 올바르지 않습니다.</Text>
+      return (
+        <View style={{ flex:1, }}>
+          <Text style={styles.welcome}>서버 접속이 올바르지 않습니다.</Text>
+        </View>)
     }
   }
   
@@ -135,3 +127,4 @@ const styles = StyleSheet.create({
   },
 });
 
+export default ContentList

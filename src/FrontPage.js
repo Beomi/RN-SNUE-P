@@ -70,10 +70,10 @@ class FrontPage extends Component {
   _renderRow(rowData){
     return (
       <View style={styles.renderRow}>
-          <Text style={styles.maintext}>{rowData.title}</Text>
+          <Text style={styles.maintext}>{rowData.group}</Text>
         <View>
-            <Text style={styles.smalltextWithUser}>{rowData.user}</Text>
-            <Text style={styles.smalltextWithDate}>{rowData.datetime}</Text>
+            <Text style={styles.smalltextWithUser}></Text>
+            <Text style={styles.smalltextWithDate}></Text>
         </View>
         
       </View>)
@@ -84,13 +84,10 @@ class FrontPage extends Component {
       .then((response) => response.json())
       .then((responseJSON) => {
       var textList=[];
-      for (var p in responseJSON.data){
-        textList.push({
-          title: responseJSON.data[p].title,
-          user: responseJSON.data[p].user,
-          post_number: responseJSON.data[p].post_number,
-          datetime: responseJSON.data[p].datetime
-        })
+      for (var prop in responseJSON){
+          textList.push({
+            group: prop
+          })
       }
       var ds = new ListView.DataSource({
       rowHasChanged: (r1,r2) => r1 !== r2

@@ -17,15 +17,6 @@ class Project extends Component {
   render() {
     return (
         <TabBarIOS selectedTab={this.state.selectedTab}>
-          <TabBarIOS.Item selected={this.state.selectedTab === 'FrontPage'}
-            systemIcon="featured"
-            onPress = {() => {
-              this.setState({
-                selectedTab: 'FrontPage'
-              })
-            }}>
-            <FrontPage />
-          </TabBarIOS.Item>
           <TabBarIOS.Item selected={this.state.selectedTab === 'BoardList'}
             systemIcon="contacts"
             onPress = {() => {
@@ -34,6 +25,15 @@ class Project extends Component {
               })
             }}>
             <BoardList />
+          </TabBarIOS.Item>
+          <TabBarIOS.Item selected={this.state.selectedTab === 'FrontPage'}
+            systemIcon="featured"
+            onPress = {() => {
+              this.setState({
+                selectedTab: 'FrontPage'
+              })
+            }}>
+            <FrontPage />
           </TabBarIOS.Item>
         </TabBarIOS>
       )
