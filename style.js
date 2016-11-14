@@ -1,0 +1,1 @@
+module.exports = require('react-native').StyleSheet.create({"container":{"width":100,"flex":"auto","padding":30,"marginTop":65,"alignItems":"center"},"description":{"marginBottom":20,"fontSize":18,"textAlign":"center","color":"#656656"}});

@@ -63,7 +63,7 @@ class BoardList extends Component {
   render() {
     if (this.freeboard_list !== []){
       return (
-        <View style={{ flex:1, }}>
+        <View style={{ flex:1 }}>
           <View style={styles.container}>
               <ListView
               dataSource={this.state.dataSource}
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   renderRow: {
     padding: 10,
     borderWidth: 0.5,
-    borderColor: '#AAA',
+    borderColor: '#222',
   },
   maintext: {
     fontSize: 18,

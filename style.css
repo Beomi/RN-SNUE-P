@@ -1,0 +1,21 @@
+/*
+  * make css to js*
+  $ react-native-css -i style.css -o style.js -w
+*/
+container {
+  width: 100%;
+  flex: auto;
+}
+description {
+  margin-bottom: 20px;
+  font-size: 18px;
+  text-align: center;
+  color: #656656;
+}
+
+container {
+  padding: 30px;
+  margin-top: 65px;
+  align-items: center;
+  display: block;
+}

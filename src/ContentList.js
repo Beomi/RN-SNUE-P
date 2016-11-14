@@ -62,7 +62,7 @@ class ContentList extends Component {
   render() {
     if (this.freeboard_list !== []){
       return (
-        <View style={{ flex:1, }}>
+        <View style={{ flex:1, width: 500 }}>
           <View style={styles.container}>
               <ListView
               dataSource={this.state.dataSource}
